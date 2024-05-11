@@ -146,4 +146,9 @@ please note, diagonal traversal is slightly more expensive than straight up/down
 
 ## Conclusion
 
-TODO - explain the article
+In this article, we reviewed a brief history of Dijkstra's Algorithm, then we created and example graph network and stepped through it
+using the algorithm, and then was able to use it to determine the shortest path of nodes.
+
+This algorithm I have found is more expensive than A\*, but is a nice tool to use when you don't understand the shape and size of the
+graph network. As a programming exercise, I had a lot of fun interating on this problem till I got it working, and it felt like an
+intermediate coding problem to tackle.
