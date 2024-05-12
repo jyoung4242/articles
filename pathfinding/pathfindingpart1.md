@@ -16,7 +16,7 @@ need to understand the cheapest decision. These are the kinds of challenges wher
 ## Pathfinding, what is it
 
 Quick research on pathfinding gives a plethora of resources discussing it. Pathfinding is calculating the shortest path through some
-'network'. That network can be tiles on a game level, it could be roads across the country, it could be ailses and desks in an office,
+'network'. That network can be tiles on a game level, it could be roads across the country, it could be aisles and desks in an office,
 etc etc.
 
 Pathfinding is also a algorithm tool to calculate the shortest path through a graph network. A graph network is a series of nodes and
