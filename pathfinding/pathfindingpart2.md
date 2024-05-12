@@ -88,8 +88,8 @@ Let's start with this example graph network.
 
 ![alt text](image-17.png)
 
-We will manage our walkthrough two lists, one for open nodes,and one for checked nodes. Black nodes represent nodes that are not
-traversable. Let's define our start and stop nodes as indicated by the green S node and the blue E node.
+We will manage our walkthrough with two different lists, one for open nodes,and one for checked nodes. Black nodes represent nodes that
+are not traversable. Let's define our start and stop nodes as indicated by the green S node and the blue E node.
 
 The first step of A\* algorithm is costing all the nodes, and let's see if we can show this easily.
 
