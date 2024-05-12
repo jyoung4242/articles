@@ -1,6 +1,6 @@
 ---
 slug: Pathfinding Algorithms Part 2
-title: Pathfinding Part 2 with Astar
+title: Pathfinding Part 2 with A\*
 authors: [jyoung]
 tags: [a* a-star pathfinding graph]
 ---
