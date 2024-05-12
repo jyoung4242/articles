@@ -116,7 +116,7 @@ It takes in the starting node, and ending (destination) node and returns the lis
   }
 ```
 
-So for Example, if i aid starting node is A, and endingnode is D, then the returned array would look like.
+So for Example, if I said starting node is A, and endingnode is D, then the returned array would look like.
 
 ```ts
 //[Node C, Node D]
