@@ -97,8 +97,8 @@ The first step of A\* algorithm is costing all the nodes, and let's see if we ca
 
 Why am I using floating point values here? There's a reason, if I simply use integers, then the distances wouldn't have enough
 resolution in digits, creating a little more unoptimized iterations, as the number of cells with equal f Costs would increase, here the
-fCosts are more absolute, and we will reduce the iterations. Simply put, if all the fCosts between 5.02 - 5.98 all are reprsenented as
-5 as an integer, it muddies up how the algorithm moves through and prioritizes the 'next' cell to visit. With floating points, this is
+fCosts are more absolute, and we will reduce the iterations. Simply put, if all the fCosts between 5.02 - 5.98 all are represented as 5
+as an integer, it muddies up how the algorithm moves through and prioritizes the 'next' cell to visit. With floating points, this is
 explicit. Being a grid, all the distances are simple hypotenuses using Pythagoras theorum.
 
 Before we jump into the overall repetitive loop we will add the startnode into our list of opennodes.
@@ -117,8 +117,8 @@ None are in the checked list, so we add them all to the opennodes list, and assi
 node is not traversable (black) then it gets ignored at this point, and not added to the list.
 
 This then repeats as long as nodes are in the open node list, if we run out of open nodes without hitting the end node, then there's no
-path. When we hit the end node, we start building our return list by looping back through the parent nodes of each node. Starting atthe
-end node, it will have a parent, that parent will have a parent... and so on until you hit the start node.
+path. When we hit the end node, we start building our return list by looping back through the parent nodes of each node. Starting at
+the end node, it will have a parent, that parent will have a parent... and so on until you hit the start node.
 
 Let's walk through the example. Let's pick a tile with lowest f cost. As we select new 'current' nodes, we move that node to our
 checked list so it no longer is in the open node pool.
@@ -130,7 +130,8 @@ openNodes list.
 
 ![alt text](image-21.png)
 
-...but we keep selecting lowest cost node ( f cost of 5.06 is now the lowest to this point)
+...but we keep selecting lowest cost node ( f cost of 5.06 is now the lowest to this point), we add neighers to opennodes, assign them
+parent nodes...
 
 ![alt text](image-22.png)
 
