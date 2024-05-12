@@ -86,8 +86,8 @@ This series continues to iterate while neighbors are being added to the open nod
 
 ![alt text](image-17.png)
 
-Let's start with this example graph network. We will manage our walkthrough using a results table and two lists, one for open nodes,
-and one for checked nodes. Black nodes represent nodes that are not traversable.
+Let's start with this example graph network. We will manage our walkthrough two lists, one for open nodes,and one for checked nodes.
+Black nodes represent nodes that are not traversable.
 
 Let's define our start and stop nodes as indicated by the green s node and the blue e node.
 
