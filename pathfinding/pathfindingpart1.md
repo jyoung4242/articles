@@ -20,7 +20,7 @@ Quick research on pathfinding gives a plethora of resources discussing it. Pathf
 etc etc.
 
 Pathfinding is also a algorithm tool to calculate the shortest path through a graph network. A graph network is a series of nodes and
-edgest to form a chart. For more information on this, I recommend googling 'Graph Theory'
+edges to form a chart. For more information on this, I recommend googling 'Graph Theory'
 
 For the sake of clarity, there are two algorithms we specifically dig into with this demonstration: Dijkstra's Algorithm and A\*.
 
@@ -30,7 +30,7 @@ We study A\* more in [Part 2](./pathfindingpart2.md).
 
 ### Dijkstra's Algorithm
 
-Dijkstra's Algorithm is an algorithm for finding the shortest path through a graph that presents wieghting (distances) between
+Dijkstra's Algorithm is an algorithm for finding the shortest path through a graph that presents weighting (distances) between
 different nodes. The algorithm essentially dictates a starting node, then it systematically calculates the distance to all other nodes
 in the graph, thus, giving one the ability to find the shortest path.
 
