@@ -107,9 +107,9 @@ Now the algorithm can start to be repetitive. We set the startnode to the curren
 
 We first check if our current node is the end node, which it is not, so we proceed.
 
-Since the starting node is the only node in openlist, it gets selected, otherwise we would have selected randomly from the lowest value
-fCosts in the open node list. Now we look at all the neighbors. I will designate the pale yellow as our 'open node' list. We will use
-different colors for 'checked'.
+The next step is to select the lowest fCost, and since the starting node is the only node in openlist, it gets selected, otherwise we
+would have selected randomly from the lowest value fCosts in the open node list. Now we look at all the neighbors. I will designate the
+pale yellow as our 'open node' list. We will use different colors for 'checked'.
 
 ![alt text](image-19.png)
 
