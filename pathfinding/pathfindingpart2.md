@@ -20,14 +20,14 @@ Quick research on pathfinding gives a plethora of resources discussing it. Pathf
 etc etc.
 
 Pathfinding is also a algorithm tool to calculate the shortest path through a graph network. A graph network is a series of nodes and
-edgest to form a chart. For more information on this, I recommend googling 'Graph Theory'
+edges to form a chart. For more information on this, I recommend googling 'Graph Theory'
 
 For the sake of clarity, there are two algorithms we specifically dig into with this demonstration: Dijkstra's Algorithm and A\*. We
 studied Dijkstra's Algorithm in [Part 1](./pathfindingpart1.md).
 
 ### A\* Algorithm
 
-A star is an algorithm for finding the shortest path through a graph that presents wieghting (distances) between different nodes. The
+A star is an algorithm for finding the shortest path through a graph that presents weighting (distances) between different nodes. The
 algorithm requires a starting node, and an ending node, and the algorithm uses a few metrics for each node to systematically find the
 shortest path. The properties of each node are fCost, gCost, and hCost. We will cover those in a bit.
 
