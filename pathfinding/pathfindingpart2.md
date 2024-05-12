@@ -93,6 +93,32 @@ are not traversable. Let's define our start and stop nodes as indicated by the g
 
 The first step of A\* algorithm is costing all the nodes, and let's see if we can show this easily.
 
+For more clarity on the 'costing' step, let's talk through it for each tile.
+
+My process is to loop through each tile, and assuming it has either coordinates or and index, I can determine its distance from the
+start node and end node.
+
+Let's do the first tile together. The first tile is coordinates (x:0, y:0), and the start node is coordinates (x: 1, y:1), while the
+end node is (x: 4,y:5). The gCost for this tile we can use Pythagorean theorem to calculate the distance as the hypotenuse.
+
+```js
+gCost = Math.sqrt(Math.pow((1-0), 2) + Math.pow((1-0)), 2));
+```
+
+This gives us a gCost of ~1.41.
+
+We can repeat this equation for the hCost, but it is with respect to the end node coordinates.
+
+```js
+hCost = Math.sqrt(Math.pow((4-0), 2) + Math.pow((5-0)), 2));
+```
+
+This yeilds a hCost of ~6.40.
+
+Knowing both now, we can determine the fCost of that node or tile, by adding the two together, making the fCost 7.82... with rounding.
+
+We can repeat this process for each tile in the graph.
+
 ![alt text](image-18.png)
 
 Why am I using floating point values here? There's a reason, if I simply use integers, then the distances wouldn't have enough
