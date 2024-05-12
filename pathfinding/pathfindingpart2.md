@@ -73,7 +73,7 @@ Then we get into the repeating part of the algorithm.
 
 2. Move the current square to the closed buffer (list). Remove from openNodes.
 
-3. Check that the new current node is the endnode, this is the finishing condition. using the parent node properties of each node, walk
+3. Check if the new current node is the endnode, this is the finishing condition. using the parent node properties of each node, walk
    backwards to the starting node, that's the shortest path
 
 4. If not ending node, review all neighbor squares of current square, if a neighbor is not traversable, ignore it
