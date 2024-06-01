@@ -218,7 +218,7 @@ to account for that in their output validation.
 
 # Why Excalibur
 
-<img src="image-18.png" alt="ExcaliburJS" style="width:750px;height:350px;"/>
+<img src="image-18.png" alt="ExcaliburJS" style="width:750px;"/>
 
 Small Plug...
 
