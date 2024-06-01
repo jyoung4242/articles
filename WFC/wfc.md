@@ -188,9 +188,9 @@ design pattern essentially unlocks the undo button for an algorithm, and allows 
 
 <img src="image-16.png" alt="demo app" style="width:250px;height:250px;"/>
 
-[Link To Repo](www.google.com)
+[Link To Repo](https://github.com/jyoung4242/wfc-itch)
 
-[Link To Demo](www.itch.io)
+[Link To Demo](https://mookie4242.itch.io/wave-function-collapse-simulation)
 
 The demo application that's online is a simple regeneration, a quick simulation that runs a few algorithm iterations...
 
