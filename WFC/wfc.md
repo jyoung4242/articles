@@ -48,8 +48,11 @@ tile-based WFC approach.
 
 ## The Rules
 
-The rules are arguably the most critical aspect of the algorithm. This includes details and mappings between each tile and what other
-tiles can be used as neighbors. Let us consider this subsection of the tilemap to demonstrate this:
+The rules are arguably the most critical aspect of the algorithm. For the simple tile-based mapping, this includes details and mappings
+between each tile and what other tiles can be used as neighbors. If you were doing the input image form of WFC, the input image's
+design would dictate the rules pixel by pixel.
+
+Let us consider this subsection of the tilemap to demonstrate this:
 
 ![subsection of tileset](image-3.png)
 
@@ -88,7 +91,7 @@ let waterTileRules = {
 };
 ```
 
-What this object spells out is that for tiles above the tree tile, it can be a grass, water, or treetop tile. Tiles below the treetile
+What these objects spell out is that for tiles above the tree tile, it can be a grass, water, or treetop tile. Tiles below the treetile
 can be another tree tile, or water, or grass... and so on. One special assignement to note, that below a treeTop tile, can ONLY be a
 treeTile.
 
@@ -109,7 +112,7 @@ If we entered the algorithm with predetermined tiles, or what we could call coll
 those tiles would have a lower entropy as dictated by the rules we discussed above.
 
 Let's begin by selecting a random tile on this grid... `{x: 3,y: 4}`. Due to the fact that all its neighbors are empty, it's pool of
-available tiles is 3, tree, grass,waterm or tree top. Let's pick tree, as this can simply be randomly picked from the set.
+available tiles is 4, tree, grass,water, or tree top. Let us pick tree, as this can simply be randomly picked from the set.
 
 <img src="image-5.png" alt="drawing" style="width:250px;height:250px;"/>
 
@@ -172,17 +175,22 @@ This algorithm carries on until there are no more tiles to collapse
 <img src="image-14.png" alt="drawing"style="width:200px;height:200px"/>
 <img src="image-15.png" alt="drawing" style="width:200px;height:200px;"/><img src="image-17.png" alt="drawing" style="width:200px;height:200px;"/>
 
+One note on this example is that we have really limited the amount of different tiles that are being accessed, and you see this
+manifest itself in the entoropies of 3,4 consistently. The rules also are fairly permissive, which is why we don't see a huge variation
+of entropies. More tiles available, and more restrictive rules, will drive much more variation in the entropy scores that will be
+witnessed.
+
 ## Collisions
 
 What you will find with this algorithm that there maybe created a conflict where there is no available tiles to select based on the
 neighbors. This is called either a conflict or a collision, and can be handled in a couple different ways.
 
-On thought is to reset the map and try again. From a process perspective, sometimes this is just the easiest/cheapest method to resolve
-the conflict.
+One thought is to reset the map and try again. From a process perspective, sometimes this is just the easiest/cheapest method to
+resolve the conflict.
 
-Another approach is to use a form of the command design pattern, and saving a stack of state that are taken over the course of the
-algorithms generation, and upon reaching a collision, 'backtrack' a bit and retry and generate again from a previous point. The command
-design pattern essentially unlocks the undo button for an algorithm, and allows for this.
+Another approach is to use a form of the command design pattern, and saving a stack of state snapshots that are captured during each
+step of the algorithms iteration, and upon reaching a collision, 'backtrack' a bit and retry and generate again from a previous point.
+The command design pattern essentially unlocks the undo button for an algorithm, and allows for this.
 
 # Demo Application
 
@@ -192,18 +200,21 @@ design pattern essentially unlocks the undo button for an algorithm, and allows 
 
 [Link To Demo](https://mookie4242.itch.io/wave-function-collapse-simulation)
 
-The demo application that's online is a simple regeneration, a quick simulation that runs a few algorithm iterations...
+The demo application that's online is a simple, quick simulation that runs a few algorithm iterations... and can regenerate the
+simulation on Spacebar or Mouse/Touch tap.
 
 First, it uses WFC to generate the terrain, only using the three tiles of grass, tree, treetops.
 
 Second, it finds spots to draw two buildings. The rules around this is to not collide the two buildings, and also not have the
 buildings overrun the edges of the map. I use WFC to generate random building patterns using a number of tiles.
 
-Finally, and this has nothing to do with WFC, I use a pathfinding algorithm i wrote to find a path between the two doors of the houses,
+Finally, and this has nothing to do with WFC, I use a pathfinding algorithm I wrote to find a path between the two doors of the houses,
 and draw a road between them... I did that for my own amusement.
 
-Pressing the spacebar in the demo, attempts to regenerate another drawing. Now, such in life, not every generation is perfect, but this
-seems to have a >90% success rate, and for the purposes of this article, I can accept that.
+Pressing the spacebar in the demo, or a mouse tap, attempts to regenerate another drawing. Now, such in life, not every generation is
+perfect, but this seems to have a >90% success rate, and for the purposes of this article, I can accept that. I intentionally did not
+put in a layer of complexity for managing collisions, as I wanted to demonstrate what CAN happen using this method, and how one needs
+to account for that in their output validation.
 
 # Why Excalibur
 
