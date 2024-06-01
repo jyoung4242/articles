@@ -1,15 +1,16 @@
 ---
 slug: Pathfinding Algorithms Part 2
 title: Pathfinding Part 2 with A*
-authors: [jyoung]
-tags: [a* a-star pathfinding graph]
+authors: [justin]
+tags: [a* a-star pathfinding graph excaliburjs foss]
 ---
 
-One of the most common problems that need solved in game development is navigating from one tile to a separate tile somewhere else. Or
-sometimes, I need just to understand if that path is clear between one tile and another. Sometimes you can have a graph node tree, and
-need to understand the cheapest decision. These are the kinds of challenges where one could use a pathfinding algorithm to solve.
+![demo banner](image-1.png)
 
-![alt text](image-1.png)
+This is a continuation of our discussion on pathfinding. In the first part of our discussion, we investigated Dijkstra's algorithm.
+This time, we are digging into A\* pathfinding.
+
+[Link to Part 1](./pathfindingpart1.md)
 
 [Link to Pathfinding Demo](https://excaliburjs.com/sample-pathfinding/)
 
@@ -17,10 +18,10 @@ need to understand the cheapest decision. These are the kinds of challenges wher
 
 Quick research on pathfinding gives a plethora of resources discussing it. Pathfinding is calculating the shortest path through some
 'network'. That network can be tiles on a game level, it could be roads across the country, it could be aisles and desks in an office,
-etc etc.
+etc. etc.
 
-Pathfinding is also a algorithm tool to calculate the shortest path through a graph network. A graph network is a series of nodes and
-edges to form a chart. For more information on this, I recommend googling 'Graph Theory'
+Pathfinding is also an algorithm tool to calculate the shortest path through a graph network. A graph network is a series of nodes and
+edges to form a chart. For more information on this: [click here](https://www.google.com/search?q=Graph%20Thoery).
 
 For the sake of clarity, there are two algorithms we specifically dig into with this demonstration: Dijkstra's Algorithm and A\*. We
 studied Dijkstra's Algorithm in [Part 1](./pathfindingpart1.md).
@@ -45,10 +46,15 @@ Over the years the A\* algorithm has been refined slightly to become more optimi
 
 ## Algorithm Walkthrough
 
+### Load the Graph
+
 We first load our graph, understanding which nodes are clear to traverse, and which nodes are blocked. We also need to understand the
 starting node and ending node as well.
 
-We first will assess the cost properties for each node. This will be a method that assigns the fCost, gCost, and hCost to each node.
+### Cost the nodes
+
+We first will assess the cost properties for each node. Cost is a term we are using that represents a distance between nodes. This will
+be a method that assigns the fCost, gCost, and hCost to each node.
 
 Let's discuss these costs first. The costs are a weighting of each node with respect to its positioning between the starting and ending
 nodes.
@@ -57,15 +63,27 @@ The fCost of a tile is equal to the gCost plus the hCost. This is represented as
 
 `f=g+h`
 
-The gCost of the node is distance cost between the current node and the starting node.
+The gCost of the node is the distance cost between the current node and the starting node.
 
-the hCost of the node is the 'theoretical' distance from the current node to the ending node.
+The hCost of the node is the 'theoretical' distance from the current node to the ending node. This is why we discussed heuristics
+earlier. This value is an estimate of the distance, a best guess. This makes guessing for a rectangular tilemap easy, since all tiles
+are distance 1 from each other in a grid, the method of guessing is just using the tile positions of the two nodes and using
+Pythagorean theorem to assess the distance. If the grid is irregular, some spatial data may need to be injected into the graphs
+creation to facilitate this heuristic, for example: x/y coordinate locations maybe.
 
-Thus, the fCost is the sum of these two values.
+Thus, the fCost is the sum of these two values. While simplistic, this is the value that is leveraged in the algorithm to determine the
+'best' path.
+
+### Setup Buffers
 
 After we've looped through all the nodes and costed them appropriately, we will utilize a buffer called openNodes. We will push the
-starting node into this, as its the only node we 'know' about as of yet. We will use this openNodes buffer for much of the iterations
+starting node into this, as it is the only node we 'know' about as of yet. We will use this openNodes buffer for much of the iterations
 we conduct in this algorithm.
+
+We will leverage another buffer we will call either 'checked' or 'closed' buffer, and this is where the results of our algorithm will
+exist, as we process tiles from openNodes into this buffer.
+
+### Iteration
 
 Then we get into the repeating part of the algorithm.
 
@@ -86,14 +104,14 @@ This series continues to iterate while neighbors are being added to the open nod
 
 Let's start with this example graph network.
 
-![alt text](image-17.png)
+![starting grid](image-17.png)
 
-We will manage our walkthrough with two different lists, one for open nodes,and one for checked nodes. Black nodes represent nodes that
-are not traversable. Let's define our start and stop nodes as indicated by the green S node and the blue E node.
+We will manage our walkthrough with two different lists, open nodes and checked nodes. Black tiles above represent nodes that are not
+traversable. Let's define our start and stop nodes as indicated by the green S node and the blue E node.
 
 The first step of A\* algorithm is costing all the nodes, and let's see if we can show this easily.
 
-For more clarity on the 'costing' step, let's talk through it for each tile.
+For more clarity on the 'costing' step, let's talk through the core loop that is applied to each tile.
 
 My process is to loop through each tile, and assuming it has either coordinates or and index, I can determine its distance from the
 start node and end node.
@@ -119,15 +137,15 @@ Knowing both now, we can determine the fCost of that node or tile, by adding the
 
 We can repeat this process for each tile in the graph.
 
-![alt text](image-18.png)
+![costed grid](image-18.png)
 
 Why am I using floating point values here? There's a reason, if I simply use integers, then the distances wouldn't have enough
 resolution in digits, creating a little more unoptimized iterations, as the number of cells with equal f Costs would increase, here the
 fCosts are more absolute, and we will reduce the iterations. Simply put, if all the fCosts between 5.02 - 5.98 all are represented as 5
 as an integer, it muddies up how the algorithm moves through and prioritizes the 'next' cell to visit. With floating points, this is
-explicit. Being a grid, all the distances are simple hypotenuses using Pythagoras theorum.
+explicit. Being a grid, all the distances are simple hypotenuse calculations using Pythagorean theorem.
 
-Before we jump into the overall repetitive loop we will add the startnode into our list of opennodes.
+Before we jump into the overall repetitive loop, we will add the startnode into our list of opennodes.
 
 Now the algorithm can start to be repetitive. We set the startnode to the current node, and move it from open to checked lists.
 
@@ -137,7 +155,7 @@ The next step is to select the lowest fCost, and since the starting node is the 
 would have selected randomly from the lowest value fCosts in the open node list. Now we look at all the neighbors. I will designate the
 pale yellow as our 'open node' list. We will use different colors for 'checked'.
 
-![alt text](image-19.png)
+![first neighbors](image-19.png)
 
 None are in the checked list, so we add them all to the opennodes list, and assign the current node as each nodes parent. To note, if a
 node is not traversable (black) then it gets ignored at this point, and not added to the list.
@@ -149,38 +167,38 @@ the end node, it will have a parent, that parent will have a parent... and so on
 Let's walk through the example. Let's pick a tile with lowest f cost. As we select new 'current' nodes, we move that node to our
 checked list so it no longer is in the open node pool.
 
-![alt text](image-20.png)
+![picking lowest fcost](image-20.png)
 
 The lowest cost is 5.02, and grab its neighbors. Along the way we are assigning parent nodes, and adding the new neighbors to the
 openNodes list.
 
-![alt text](image-21.png)
+![next group of fcost](image-21.png)
 
 ...but we keep selecting lowest cost node ( f cost of 5.06 is now the lowest to this point), we add neighers to opennodes, assign them
 parent nodes...
 
-![alt text](image-22.png)
+![and next](image-22.png)
 
 .. the next iteration, the fCost of 5.24 is now lowest, so it gets 'checked', and we grab its neighbors, assign parents..
 
-![alt text](image-23.png)
+![first duplicate fcost](image-23.png)
 
 .. the next iteration, there are two nodes of 5.4 cost, so let's see how this CAN play out, and the algorithm starts to make sense at
 this point.
 
 Let's pick the high road...
 
-![alt text](image-24.png)
+![high road](image-24.png)
 
 The new neighbors are assigned parents, and are added to the overall list of open nodes to assess. Which is the new lowest fCost now?
 5.4 is still the lowest fCost.
 
-![alt text](image-25.png)
+![correction](image-25.png)
 
 Yes, the algorithm went back to the other path and found a better next 'current' node in the list of open nodes. The process is almost
 complete. The next lowest fCost is 5.47, and there is more than one node with that value, so for the sake of being a completionist...
 
-![alt text](image-26.png)
+![completionist trophy](image-26.png)
 
 Still the lowest fCost is 5.47, so we select the next node, grab neighbors, assign parents... one thing I did differently on this table
 is showing the fCost of the ending node, which up till now wasn't necessary, but showing it here lets one understand how the overall
@@ -188,16 +206,16 @@ algorithm loops, because the end node HAS to be selected as the next lowest cost
 beginning of the iteration, not in the neighbor eveluation. So in this next loop, i don't make it yellow, but the end node is now been
 placed AS A NEIGHBOR into the list of open nodes for evaluation.
 
-![alt text](image-27.png)
+![finishing up](image-27.png)
 
 We now have our path, because the next iteration, the first thing we'll do is pick the lowest node fCost (5.0) and make it the current
-tile, and then test if its the end node, which is true now.
+tile, and then test if it is the end node, which is true now.
 
 We can return its path walking back all the parent node properties and see how we got there along the way.
 
 ## The test
 
-![alt text](image-28.png)
+![demo introduction](image-28.png)
 
 [Link to Demo](https://excaliburjs.com/sample-pathfinding/)
 
@@ -209,6 +227,14 @@ traverse, and the overall duration of the process required to make the calculati
 
 Also included, are the ability to add diagonal traversals in the graph. Which simply modifies the graph created with extra edges added,
 please note, diagonal traversal is slightly more expensive than straight up/down, left/right traversal.
+
+## Why Excalibur
+
+Small Plug...
+
+[ExcaliburJS](https://excaliburjs.com/) is a friendly, TypeScript 2D game engine that can produce games for the web. It is free and
+open source (FOSS), well documented, and has a growing, healthy community of gamedevs working with it and supporting each other. There
+is a great discord channel for it [HERE](https://discord.gg/ScX52wD4eM), for questions and inquiries. Check it out!!!
 
 ## Conclusion
 
