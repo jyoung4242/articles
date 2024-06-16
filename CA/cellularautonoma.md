@@ -61,8 +61,8 @@ cloned array, as to not overwrite the starting array's values as you iterate ove
 The rules around flipping the values in each cell will depend on each implementation of the CA algorithm. These can be variable rules,
 each implementation can be unique in that instance. This gives you some agency and control over how you want your simulation to run.
 
-To note, this approach to the CA algorithm is for the sake of THIS article, and other approaches can be implemented. Let's define our
-rules for the scope of this article.
+To note, this approach to the CA algorithm is for the sake of THIS article. Other approaches can be implemented. Let's define our rules
+for the scope of this article.
 
 - If the starting value for a tile is a zero, then to flip it to a one, the neighbors must have five or more ones surrounding the
   starting tile.
