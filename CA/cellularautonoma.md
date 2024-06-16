@@ -7,15 +7,15 @@ tags: [procedural generation cellular automata gamedev]
 
 <img src="image-18.png" alt="TitleImage" style="width:400px;"/>
 
-In my last article, we studied the [Wafe Function Collapse](../WFC/wfc.md) Algorithm. Staying within that topic thread of different
-procedural algorithms that can be leveraged in game development, let's turn our focus to Cellular Automata.
+In my last article, we studied the [Wafe Function Collapse](../WFC/wfc.md) Algorithm. Staying within that topical thread of procedural
+algorithms which can be leveraged in game development, let's turn our focus to Cellular Automata.
 
 ## What is Cellular Automata
 
-Cellular Automata, or CA for short, is an algorithm that has some key potential benefits with the field of game development. You may
-have seen in certain games, maybe Dwarf Fortress or Terraria for example, where organic caves are generated, or some map patterns that
-look naturally grown. Essentially, it uses a grid based data set, and for each discrete unit in that grid, uses the state of all its
-neighbors to determine the end state of that cell in the ending simulation result.
+Cellular Automata, or CA for short, is an algorithm which has some key potential benefits within the field of game development. You may
+have seen in certain games, maybe Dwarf Fortress or Terraria for example, where organic looking caves are generated, or some map
+patterns that look naturally grown. Essentially, it uses a grid based data set, and for each discrete unit in that grid, uses the state
+of all its neighbors to determine the end state of that cell in the ending simulation result.
 
 ## History of Cellular Automata
 
@@ -30,9 +30,9 @@ units (cells), and calculating their behavior based on the influence of each cel
 
 <img src="image-15.png" alt="game of life" style="width:250px; height: 250px;"/>
 
-In the 1970's, James Conway famously created a simulation calle the
-[Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life). This very simple simulation which had only 4 rules, created a
-very dynamic and varied group of results that bounced between appearing random and controlled order. The rules determined each cell's
+In the 1970's, James Conway famously created a simulation called the
+[Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life). This very simple simulation, which had only four rules, created
+a very dynamic and varied group of results that bounced between appearing random and controlled order. The rules determined each cell's
 future state as classified as dying due to underpopulation or overpopulation, creating a new living unit due to reproduction, or just
 continuing to exist with the correct balance of population around that unit.
 
@@ -58,8 +58,8 @@ The algorithm will have us walk through the grid tile by tile and we will either
 value to the opposite, meaning a zero will become a one, and vice versa. The results of this assessment needs to be kept in a new or
 cloned array, as to not overwrite the starting array's values as you iterate over the tiles.
 
-The rules around flipping the zeros will depend on each implementation of the CA algorithm. These can be variable rules, each
-implementation can be unique in that instance. This gives you some agency and control over how you want your simulation to run.
+The rules around flipping the values in each cell will depend on each implementation of the CA algorithm. These can be variable rules,
+each implementation can be unique in that instance. This gives you some agency and control over how you want your simulation to run.
 
 To note, this approach to the CA algorithm is for the sake of THIS article, and other approaches can be implemented. Let's define our
 rules for the scope of this article.
@@ -75,11 +75,13 @@ grid by going tile by tile and setting the new grid's values based on each tile'
 For the rule on out of bound neighbors, you can use a variety of different rules to your liking. You can treat them as constants, like
 in this instance, we treat them as walls. You can have them be treated as floors, which will change how your simulation runs, producing
 a more 'open' result. You can also have the out of bound tiles mirror the value of the starting value, i.e. if your starting tile on
-the edge is a 1, then out of bound tiles are all 1's, and vice versa.
+the edge is a one, then out of bound tiles are all ones, and vice versa.
 
-So starting at the first tile of the grid, you will look at the 8 neighbors of the tile, in this instance, 5 of them are out of bound
-indexes. You add all the walls up in the neighbors, and if the value is greater or equal to 5, in the new grid/array, you will place a
-1 in index 0 for the new grid. You do this for each tile in the grid/array.
+So starting at the first tile of the grid, you will look at the eight neighbors of the tile, in this instance, five of them are out of
+bound indexes. You add all the walls up in the neighbors,since the starting value is a zero, if the value is greater or equal to five,
+in the new grid/array, you will place a one in index zero for the new grid. This is how you flip the values. If, for instance, there
+would be less than five walls for the neighbors of this index, the value would have remained zero. You repeat this process for each
+tile in the grid/array.
 
 At the end, when you have completely iterated over each tile, you will have a new grid of tiles that are now set to zeroes or ones,
 based on that starting array. You can use this new grid as a completed result, or you can re-run the same simulation using this new
