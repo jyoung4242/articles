@@ -153,7 +153,7 @@ Let's run the simulation on this new data and see how it turns out.
 <img src="image-14.png" alt="full second run of sim" style="width:250px; "/>
 
 So you see how numbers start to collect together to create natural, organic looking regions of walls and floors. This is particularly
-handy technicque for generating cave shapes for tilemaps.
+handy technique for generating cave shapes for tilemaps.
 
 ## Demo Application
 
