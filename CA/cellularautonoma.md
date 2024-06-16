@@ -64,10 +64,11 @@ each implementation can be unique in that instance. This gives you some agency a
 To note, this approach to the CA algorithm is for the sake of THIS article, and other approaches can be implemented. Let's define our
 rules for the scope of this article.
 
-- If the starting value for a tile is a 0, then to flip it to a 1, the neighbors must have 5 or more 1's surrounding the starting tile.
-- If the starting value for a tile is a 1, then to flip it to a 0, the neighbors must have 3 or fewer 1's surrounding the starting
-  tile.
-- For tiles on the edges of the grid, which will not have 8 neighbors, out of bound regions will be treated as 1's or 'walls'
+- If the starting value for a tile is a zero, then to flip it to a one, the neighbors must have five or more ones surrounding the
+  starting tile.
+- If the starting value for a tile is a one, then to flip it to a zero, the neighbors must have three or fewer ones surrounding the
+  starting tile.
+- For tiles on the edges of the grid, which will not have 8 neighbors, out of bound regions will be treated as ones or 'walls'
 
 With these rules in place, which can be modified and tailored to your liking, we can use them to determine the next interation of the
 grid by going tile by tile and setting the new grid's values based on each tile's neighbors.
@@ -95,12 +96,12 @@ starting values, and then we will utilize the CA algorithm over multiple steps t
 ### Starting Point
 
 Let's start with an empty array of numbers. We will represent the flat array as a two dimensional grid, with x and y coordinates. This
-is a 7 x 7 grid, which will be an array of size 49. As we process throught he CA algorithm, we will be recording our results into a new
-array, as to not overwrite the input array while we are iterating over the indexes.
+is a 7 x 7 grid, which will be an array of forty-nine cells. As we process throught he CA algorithm, we will be recording our results
+into a new array, as to not overwrite the input array while we are iterating over the indexes.
 
 <img src="image-1.png" alt="starting grid" style="width:250px; "/>
 
-For the CA algorithm, it is suggested to fill the initial array with random 1's and 0's. You can use a
+For the CA algorithm, it is suggested to fill the initial array with random ones and zeroes. You can use a
 [Perlin noise](https://en.wikipedia.org/wiki/Perlin_noise) field, or a [Simplex noise](https://en.wikipedia.org/wiki/Simplex_noise)
 field or just use your languages built in random function to fill the field. Here is ours:
 
@@ -113,29 +114,31 @@ values of the neighbors. For this simulation we treat out of bound indexes as wa
 
 <img src="image-3.png" alt="first index" style="width:250px; "/>
 
-The first index of the array is the top left corner of the grid. This is relatively unique in the sense that this index only has 3 real
-neighbors. But as we mentioned before, out of bound (OOB) indexes will be treated as walls. If we count up each neighbor index, plus
-the OOB indexes, we get a value of 7. Since this count is higher than 4, we will flip this indexes value to 1 in the new array we are
-creating.
+The first index of the array is the top left corner of the grid. This is relatively unique in the sense that this index only has three
+real neighbors. But as we mentioned before, out of bound (OOB) indexes will be treated as walls. If we count up each neighbor index,
+plus the OOB indexes, we get a value of seven. Since this count is higher than four, we will flip this indexes value to one in the new
+array we are creating.
 
 <img src="image-5.png" alt="new array first index" style="width:250px; "/>
 
 ### Iterating
 
-The second index of the array is a 1. Now this index only has 3 OOB indexes that will count as walls.
+The second index of the array is a one. Now this index only has three OOB indexes that will count as walls.
 
 <img src="image-4.png" alt="second index" style="width:250px; "/>
 
-This index only has one addition 1 in its neighbors, and if that's added to the 3 OOB index values, that puts our value to 4. In our
-algorithm we are using today, the value that is required to change a 1 to a 0 is if it has less than 4 walls as neighbors. With that,
-we will leave this one in place and insert this value in the new array.
+This index only has one addition one in its neighbors, and if that's added to the three OOB index values, that puts our value to four.
+In our algorithm we are using today, the value that is required to change a one to a zero is if it has less than four walls as
+neighbors. With that, we will leave this one in place and insert this value in the new array.
 
 <img src="image-6.png" alt="new array second index" style="width:250px; "/>
 
 We will follow this process for each index with the given rules below:
 
-- If the original value is 1 in the starting index, to be set to 0 in the new array, the neighbor values have to be less than 4.
-- If the original value is 0 in the starting index, to be set to 1 in the new array, the neighbor values need to be 5 or higher.
+- If the original value is one in the starting index, to be set to zero in the new array, the neighbor values have to be less than
+  four.
+- If the original value is zero in the starting index, to be set to one in the new array, the neighbor values need to be five or
+  higher.
 
 Let's speed this process along a bit.
 
@@ -172,8 +175,8 @@ floor tiles. There are two buttons, one that resets the simulation, and the othe
 to demonstrate the results.
 
 The demo starts with a noise field which is a plugin for Excalibur. Using a numbered array representing the 36x36 tilemap, which has
-'1's and '0's we can feed this array into the CA function. You can repeatedly press the 'CA Generation Step' button and the same array
-can be re-fed into the algo to see the step by step iteration, and then can be reset to a new noise field again to start over.
+ones and zeroes we can feed this array into the CA function. You can repeatedly press the 'CA Generation Step' button and the same
+array can be re-fed into the algo to see the step by step iteration, and then can be reset to a new noise field again to start over.
 
 # Why Excalibur
 
