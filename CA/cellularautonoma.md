@@ -193,8 +193,8 @@ is a great discord channel for it [HERE](https://discord.gg/ScX52wD4eM), for que
 So, what did we cover? We discussed the history of Cellular Automata and some generalized use cases for CA within the context of game
 development. We covered the implementation of the steps to take to perform the simulation on a grid of data, and then we conducted a
 walk through example of using the algorithm. Finally, we introduced a demo application hosted on itch, and shared the repository in
-case oen is interested in the implementation of it.
+case one is interested in the implementation of it.
 
 This algorithm is one of the easier to implement, as the steps are not that complicated either in congnitive depth or in mathematical
-processing. It is one of my favorite smple tools that reach for especially for tilemap generation when I create levels. I urge you to
+processing. It is one of my favorite simple tools that reach for especially for tilemap generation when I create levels. I urge you to
 give it a try and see what you can generate for yourself!
