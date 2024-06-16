@@ -7,13 +7,13 @@ tags: [procedural generation cellular automata gamedev]
 
 <img src="image-18.png" alt="TitleImage" style="width:400px;"/>
 
-In my last article, we studied the [Wafe Function Collapse](../WFC/wfc.md) Algorithm. Staying within that topical thread of procedural
+In my last article, we studied the [Wave Function Collapse](../WFC/wfc.md) Algorithm. Staying within that topical thread of procedural
 algorithms which can be leveraged in game development, let's turn our focus to Cellular Automata.
 
 ## What is Cellular Automata
 
 Cellular Automata, or CA for short, is an algorithm which has some key potential benefits within the field of game development. You may
-have seen in certain games, maybe Dwarf Fortress or Terraria for example, where organic looking caves are generated, or some map
+have seen in certain games, for example Dwarf Fortress or Terraria for example, where organic looking caves are generated, or some map
 patterns that look naturally grown. Essentially, it uses a grid based data set, and for each discrete unit in that grid, uses the state
 of all its neighbors to determine the end state of that cell in the ending simulation result.
 
@@ -24,7 +24,7 @@ of all its neighbors to determine the end state of that cell in the ending simul
 The early beginnings of the algorithm originated in the 1940's while scientists were studying crystal growth. That study, plus others
 including self-replicating robot experiments led to the realization of using a method of treating a system as a collection of discrete
 units (cells), and calculating their behavior based on the influence of each cell's neighbors. For more details on this:
-[Link](https://en.wikipedia.org/wiki/Cellular_automaton)
+[Cellular Automata](https://en.wikipedia.org/wiki/Cellular_automaton)
 
 ### The Game of Life
 
