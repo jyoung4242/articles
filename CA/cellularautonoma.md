@@ -41,11 +41,11 @@ continuing to exist with the correct balance of population around that unit.
 There are some common implementations of using Cellular Automata in game development. The classic trope is using the CA algorithm for
 generating tilemaps of organic looking areas or cave systems.
 
-<img src="image-16.png" alt="cave system" style="width:250px; height: 250px;"/>
+<img src="https://i.pinimg.com/564x/c5/af/69/c5af690b061e7de21ac002d78dbaeaf8.jpg" alt="cave system" style="width:250px; height: 250px;"/>
 
 Another application is simulating the spread of fire across an area. Brogue is a good example of how this can be used.
 
-<img src="image-17.png" alt="cave system" style="width:450px; height: 250px;"/>
+<img src="https://static.wikia.nocookie.net/procedural-content-generation/images/2/25/Brimstone.png/revision/latest?cb=20161122223341" alt="cave system" style="width:450px; height: 250px;"/>
 
 Other aspects is simulating gas expansion in an area, or the spread of a virus, or enemy reproduction simulations for generating new
 enemies.
@@ -168,15 +168,23 @@ handy technique for generating cave shapes for tilemaps.
 
 This demo is very straightforward application to isolate and focus on what is happening with the Cellular Automata algorithm.
 
-<img src="image.png" alt="Demo App" style="width:600px; "/>
+<img src="image-19.png" alt="Demo App" style="width:600px; "/>
 
 The demo simply consists of a 36x36 Tilemap of blue and white tiles. Blue tiles represent the walls, and white tiles represent the
 floor tiles. There are two buttons, one that resets the simulation, and the other button triggers the CA algorithm and uses the Tilemap
 to demonstrate the results.
 
+Also added to the demo is access to some of the variables that manipulate the simulation. We can now modify the behavior of the OOB
+indexes. For instance, instead of the default 'walls', you can now change the sim to use random setting, mirror the edge tile, or set
+it constant to 'wall' or 'floor'.
+
+You also have to ability to see what happens when you unbalance the trigger points. Above we defined 3 and 5 as the trigger points for
+flipping a tile's state. You have the ability to modify that and see the results it has on the simulation.
+
 The demo starts with a noise field which is a plugin for Excalibur. Using a numbered array representing the 36x36 tilemap, which has
 ones and zeroes we can feed this array into the CA function. You can repeatedly press the 'CA Generation Step' button and the same
-array can be re-fed into the algo to see the step by step iteration, and then can be reset to a new noise field again to start over.
+array can be re-fed into the algorithm to see the step by step iteration, and then can be reset to a new noise field again to start
+over.
 
 # Why Excalibur
 
@@ -186,7 +194,7 @@ Small Plug...
 
 [ExcaliburJS](https://excaliburjs.com/) is a friendly, TypeScript 2D game engine that can produce games for the web. It is free and
 open source (FOSS), well documented, and has a growing, healthy community of gamedevs working with it and supporting each other. There
-is a great discord channel for it [HERE](https://discord.gg/ScX52wD4eM), for questions and inquiries. Check it out!!!
+is a great discord channel for it [JOIN HERE](https://discord.gg/ScX52wD4eM), for questions and inquiries. Check it out!!!
 
 # Conclusions
 
