@@ -1,5 +1,37 @@
 # Introduction to Peasy-UI: Part 1 of the Peasy-UI Series
 
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li><a href="#what-is-peasy-ui">What is Peasy-UI?</a></li>
+    <li><a href="#how-does-it-work">How does it work?</a></li>
+    <li><a href="#usage">Usage</a>
+      <ul>
+        <li><a href="#using-node-and-a-bundler">Using node and a bundler</a></li>
+        <li><a href="#cdn-import">CDN import</a></li>
+      </ul>
+    </li>
+    <li><a href="#uiviews">UIViews</a>
+      <ul>
+        <li><a href="#api">API</a>
+            <ul>
+                <li><a href="#create">create</a></li>
+                <li><a href="#destroy">destroy</a></li>
+                <li><a href="#attached-and-detached">attached and detached</a></li>
+                <li><a href="#queue">queue</a></li>
+            </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#data-model">Data Model</a></li>
+    <li><a href="#string-literal-template">String Literal Template</a></li>
+    <li><a href="#bindings">Bindings</a></li>
+    <li><a href="#more-information">More information</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ol>
+</details>
+
 ## What is Peasy-UI?
 
 [Peasy-UI](https://github.com/peasy-lib/peasy-lib/tree/main/packages/peasy-ui) (PUI or Peasy) is a small UI binding library. It started
@@ -114,7 +146,9 @@ use later.
 
 Calling the destroy() method on an active UIView will remove it from the active list of views being monitored.
 
-#### attached and detached (lifecycle properties)
+#### attached and detached
+
+##### (lifecycle properties)
 
 ```ts
 [UIView].attached :Promise<void>;
