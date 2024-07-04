@@ -116,6 +116,8 @@ There are 4 concepts we are going to discuss in this first article:
 - String Literal Template
 - Data Bindings
 
+<img src="./peasy.png" style="width: 700px;">
+
 ## UIViews
 
 The atomic unit of PUI is the UIView. The UIView is a class that encapsulates an independent template and data model that is to be
@@ -224,10 +226,11 @@ const model = {
 
 ## String Literal Template
 
-The string literal provides the HTML patters for the library to parse and render. Nested inside the template are all the bindings that
-get parsed and evaluated each render cycle. One important item to note is that there MUST be one overarching parent div to hold all the
-HTML content. This example below also shows how CSS can be used in the string literal template and with values bound to the data model.
-Think about the power that unlocks!!!! We will discuss events and animations in a later article.
+The string literal provides the HTML patterns for the library to parse and render. Nested inside the template are all the bindings that
+get parsed and evaluated each render cycle. One important item to note is that there MUST be one overarching parent element to hold all
+the HTML content. This element can be of any type, `div`, `span`, or whatever you want, just needs to be singular. This example below
+also shows how CSS can be used in the string literal template and with values bound to the data model. Think about the power that
+unlocks!!!! We will discuss events and animations in a later article.
 
 ```ts
 const template = `
