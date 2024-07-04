@@ -258,7 +258,7 @@ const template = `
 
 ## Bindings
 
-The power of peasy rests in the varied amount of available bindings that exist. We will go into a much deeper assessment of bindings in
+The power of peasy rests in the good amount of available bindings that exist. We will go into a much deeper assessment of bindings in
 the next article, with examples on how each can be used.
 
 ### Text Bindings
