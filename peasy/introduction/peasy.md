@@ -46,12 +46,12 @@ So the intent behind Peasy was to provide and ship the bare minimum amount of Ja
 what was being rendered to the DOM, as well as being able to replace DOM content dynamically as a response to changes in the data model
 that the library owned and monitored.
 
-Today, Peasy has grown its features set to absorb controlling CSS and animations, binding DOM events, and allowing for component based
+Today, Peasy has grown its feature set to absorb controlling CSS and animations, binding DOM events, and allowing for component based
 design. I have even used Peasy to create Single Page Applications ([SPA](https://en.wikipedia.org/wiki/Single-page_application)), which
 included a router feature for controlling component content. I have also successfully used server side control of the Peasy client, and
 asyncronously controlled the client content. Peasy-UI has also birthed several companion libraries too, such as Peasy-engine,
-Peasy-lighting, Peasy-input, Peasy-audio, and others... all these I have leveraged to make a game framework that is powered by Peasy:
-[Squeleto](https://jyoung4242.github.io/Squeleto-Docs/#/)
+Peasy-lighting, Peasy-input, Peasy-audio, and others... I have leveraged all of these to make a game framework that is powered by
+Peasy: [Squeleto](https://jyoung4242.github.io/Squeleto-Docs/#/)
 
 To sum up: Peasy is powerful enough for most features needed on the web, but intentionally isn't going to replace React, Svelte, or Vue
 any time soon. It is extremely lightweight, easy to use,and performant to meet most web challenges.
@@ -59,10 +59,10 @@ any time soon. It is extremely lightweight, easy to use,and performant to meet m
 ## How does it work?
 
 Peasy works by the principle of creating UIViews to be rendered inside of the DOM. These UIViews own a data model, and also is provided
-a string literal template that represents the HTML to be rendered and parsed by Peasy. The linkage between the template provide and the
-data model is through bindings. When parsed, these bindings are then montiored and controlled by the library, and the binding 'links'
-information in the data model of the UIView, to the portion of the HTML in the template. Here is a quick example of what this can look
-like.
+a string literal template that represents the HTML to be rendered and parsed by Peasy. The linkage between the template provided and
+the data model is through bindings. When parsed, these bindings are then montiored and controlled by the library, and the binding
+'links' information in the data model of the UIView, to the portion of the HTML in the template. Here is a quick example of what this
+can look like.
 
 ```ts
 const model = {
@@ -124,7 +124,7 @@ The atomic unit of PUI is the UIView. The UIView is a class that encapsulates an
 monitored by the library. You can use mulitple UIViews in your application if you need them to be independently operated.
 
 UIViews when created are given a DOM element as a host to be injected inside of. So you can use Peasy to control the content of just
-one element or can control the entire application.
+one element or it can control the entire application.
 
 ### API
 
@@ -165,7 +165,7 @@ UI...
 await UI.create(document.body, model, template).attached;
 ```
 
-This allows for the program to wait the short cycle it takes to attached the rendered content to the DOM preventing any issues making
+This allows for the program to wait the short cycle it takes to attach the rendered content to the DOM preventing any issues making
 changes to the model before the UI has rendered properly. The detached property works in the same way if you are tearing down a UIView
 and you would want to wait for the completion of the DOM update before moving on.
 
@@ -258,7 +258,7 @@ const template = `
 
 ## Bindings
 
-The power of peasy rests in the good amount of available bindings that exist. We will go into a much deeper assessment of bindings in
+The power of Peasy rests in the good amount of available bindings that exist. We will go into a much deeper assessment of bindings in
 the next article, with examples on how each can be used.
 
 ### Text Bindings
@@ -306,7 +306,7 @@ comp(:prop) === (state) Renders component (property with type or instance)
 ## More information
 
 More information can be found in the github repo for Peasy-Lib, you also will find all the other companion packages there too. Also,
-Peasy has a Discord server where we hang out and discuss peasy and help each other out.
+Peasy has a Discord server where we hang out and discuss Peasy and help each other out.
 
 Github Repo: [Here](https://github.com/peasy-lib/peasy-lib/tree/main/packages/peasy-ui)
 
