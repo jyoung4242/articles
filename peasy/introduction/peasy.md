@@ -59,7 +59,7 @@ any time soon. It is extremely lightweight, easy to use,and performant to meet m
 
 Peasy works by the principle of creating UIViews to be rendered inside of the DOM. These UIViews own a data model, and also is provided
 a string literal template that represents the HTML to be rendered and parsed by Peasy. The linkage between the template provided and
-the data model is through bindings. When parsed, these bindings are then montiored and controlled by the library, and the binding
+the data model is through bindings. When parsed, these bindings are then monitored and controlled by the library, and the binding
 'links' information in the data model of the UIView, to the portion of the HTML in the template. Here is a quick example of what this
 can look like.
 
