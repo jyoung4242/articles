@@ -37,14 +37,13 @@
 [Peasy-UI](https://github.com/peasy-lib/peasy-lib/tree/main/packages/peasy-ui) (PUI or Peasy) is a small UI binding library. It started
 as a hobby project that grew some legs and became more than the author originally intended. Written by
 [Jürgen Wenzel](https://github.com/jwx) in early 2022, it started as a response to some game development community conversations around
-people attempting to make web based games using React. While React is the industry standard for dynamic and responsive web sites, and
-many people have successfully used React to make games on the web, it is not intended to run a game loop. Between controlling React's
-rendering properly, and the shadow DOM, it presents some baggage that must be taken into consideration when using React for game
-development.
+people attempting to make web based games using SPA frameworks. While SPA frameworks can be used to successfully make games on the web,
+most of them come with overhead and overkill for DOM reactivity from a game development and, more importantly, game loop perspective.
 
 So the intent behind Peasy was to provide and ship the bare minimum amount of JavaScript necessary to allow for the library to control
 what was being rendered to the DOM, as well as being able to replace DOM content dynamically as a response to changes in the data model
-that the library owned and monitored.
+that the library owned and monitored. The design goals of Peasy-UI is to keep the package small (< 10kb), and should not require a
+build step to use.
 
 Today, Peasy has grown its feature set to absorb controlling CSS and animations, binding DOM events, and allowing for component based
 design. I have even used Peasy to create Single Page Applications ([SPA](https://en.wikipedia.org/wiki/Single-page_application)), which
@@ -99,6 +98,9 @@ import { UI } from "@peasy-lib/peasy-ui";
 ```
 
 #### CDN import
+
+One of the biggest features of Peasy is that it doesn't require a build step. You can import Peasy directly into your index.html and
+use it.
 
 ```html
 <script type="module">
