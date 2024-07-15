@@ -118,7 +118,7 @@ There are 4 concepts we are going to discuss in this first article:
 - String Literal Template
 - Data Bindings
 
-<img src="./peasy.png" style="width: 700px;">
+<img src="./api.png" style="width: 600px;">
 
 ## UIViews
 
