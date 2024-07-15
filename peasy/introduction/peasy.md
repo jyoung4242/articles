@@ -269,8 +269,8 @@ the next article, with examples on how each can be used.
 ${prop}             Binding from model property to attribute or text
 ${|prop}            One-time binding from model property to attribute or text
 
-${'value' = prop}   binding that renders value if model property is truthy
-${'value' ! prop}   binding that renders value if model property is not truthy
+${'value' = prop}   Binding that renders value if model property is truthy
+${'value' ! prop}   Binding that renders value if model property is not truthy
 
 ${|'value' = prop}  One-time binding that renders value if model property is truthy
 ${|'value' ! prop}  One-time binding that renders value if model property is not truthy
