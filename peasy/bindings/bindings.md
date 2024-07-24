@@ -36,7 +36,7 @@
 
 standard intro
 
-!!!! <pre><code>...</code></pre>
+<!-- !!!! <pre><code>...</code></pre> -->
 
 ## Bindings and the Template
 
