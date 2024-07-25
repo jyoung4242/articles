@@ -4,29 +4,26 @@
 <details>
   <summary>Table of Contents</summary>
   <ol>
-    <li><a href="#what-is-peasy-ui">What is Peasy-UI?</a></li>
-    <li><a href="#how-does-it-work">How does it work?</a></li>
-    <li><a href="#usage">Usage</a>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#bindings-and-the-template">Bindings and the Template</a></li>
+    <li><a href="#text-bindings">Text Bindings</a>
       <ul>
-        <li><a href="#using-node-and-a-bundler">Using node and a bundler</a></li>
-        <li><a href="#cdn-import">CDN import</a></li>
+        <li><a href="#basic-binding">Basic Binding</a></li>
+        <li><a href="#conditional-boolean-text-binding">Conditional Boolean Text Binding</a></li>
+        <li><a href="#one-time-text-bindings">One-time Text bindings</a></li>
       </ul>
     </li>
-    <li><a href="#uiviews">UIViews</a>
+    <li><a href="#attribute-bindings">Attribute Bindings</a>
       <ul>
-        <li><a href="#api">API</a>
-            <ul>
-                <li><a href="#create">create</a></li>
-                <li><a href="#destroy">destroy</a></li>
-                <li><a href="#attached-and-detached">attached and detached</a></li>
-                <li><a href="#queue">queue</a></li>
-            </ul>
-        </li>
+        <li><a href="#bindings-for-element-attributes">Bindings for element attributes</a></li>
+        <li><a href="#bindings-for-events">Bindings for events</a></li>
+        <li><a href="#binding-whole-elements-to-data-model">Binding whole elements to data model</a></li>
+        <li><a href="#binding-for-rendering">Binding for Rendering</a></li>
+        <li><a href="#bindings-for-arrays">Binding for Arrays</a></li>
+        <li><a href="#bindings-for-components">Bindings for Components</a></li>
       </ul>
     </li>
-    <li><a href="#data-model">Data Model</a></li>
-    <li><a href="#string-literal-template">String Literal Template</a></li>
-    <li><a href="#bindings">Bindings</a></li>
+    <li><a href="#getters">Getters</a></li>
     <li><a href="#more-information">More information</a></li>
     <li><a href="#conclusion">Conclusion</a></li>
   </ol>
@@ -42,19 +39,19 @@ standard intro
 
 explain overall usage of bindings in the peasy-ui api
 
-## Text Bindings
+## Text bindings
 
 Explain the uniqueness of the text bindings
 
-### Basic Binding
+### Basic binding
 
 Basic text bindings explanation
 
-### Conditional Boolean Text Binding
+### Conditional boolean text binding
 
 Conditional text binding
 
-### One-time Text bindings
+### One-time text bindings
 
 One time bindings
 
@@ -78,11 +75,11 @@ explain whole element bindings
 
 explain rendering bindings
 
-### Bindings for Arrays
+### Binding for arrays
 
 explain array bindings
 
-### Bindings for Components
+### Bindings for components
 
 explain component bindings
 
@@ -90,6 +87,10 @@ explain component bindings
 
 explain the usage and benefits of getters in the data model
 
-## Summary
+## More information
+
+yourself and peasy
+
+## Conclusion
 
 Summarize binding article
