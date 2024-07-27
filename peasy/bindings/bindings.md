@@ -239,7 +239,7 @@ to have access to ANY property in the data model.
 
 ### Binding whole elements to data model
 
-Do you know how annoying it is to have to perform a `documement.getElementById('myElement');` in your Javascript? Yeah, peasy makes
+Do you know how annoying it is to have to perform a `documement.getElementById('myElement');` in your Javascript? Yeah, Peasy-UI makes
 that a bit easier.
 
 BINDING: `${ ==> propertyName}`
