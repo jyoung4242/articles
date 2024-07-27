@@ -33,7 +33,8 @@
 
 Today we are going to dive a layer deeper into the Peasy-UI library. We are going to explain the different types of bindings that are
 available in the library, and how you can incoporate them into the string literal template that you provide to the library to be
-rendered to the DOM.
+rendered to the DOM. For this article all examples are provided using TypeScript, but the library works with vanilla JavaScript
+perfectly fine.
 
 If you missed the introduction article for Peasy-UI, you can read it
 [here](https://dev.to/jyoung4242/introduction-to-peasy-ui-part-1-of-the-peasy-ui-series-4gi8), and it can provide the overview for the
@@ -43,7 +44,7 @@ library, and even introduces upcoming topics in the series.
 
 ## Bindings and the Template
 
-I quick recap of what bindings are, what the template is, and how the work with the library to give you control of what gets rendered
+I quick recap of what bindings are, what the template is, and how they work with the library to give you control of what gets rendered
 to the DOM.
 
 Peasy-UI is a library that injects content into DOM elements that you specify. The content that gets injected is dictated by a string
@@ -75,7 +76,7 @@ await UI.create(document.body, model, template).attached;
 ```
 
 This code creates the data store (model), that is bound to the html in the string literal template. UI.create takes the model,
-template, and the targeted DOM element to inject into as parameters. In you Javascript code, you can change model.name to whatever
+template, and the targeted DOM element to inject into as parameters. In your Javascript code, you can change `model.name` to whatever
 string you'd like, and it will dynamically re-render the new text into the DOM. Side note: the await in the UI.create method pauses the
 execution of subsequent logic until Peasy-UI attaches the content into the DOM. This way you can prevent trying to make changes or
 access DOM content that isn't rendered yet.
@@ -131,7 +132,7 @@ const template = `
 `;
 ```
 
-based on the truthy status of the darkMode property in the model, different text renders. If true, the div will say
+Based on the truthy status of the darkMode property in the model, different text renders. If true, the div will say
 `I am using Dark mode now!` and if its set to false, it will render `I am using Light mode now!`.
 
 ### One-time text bindings
@@ -143,7 +144,7 @@ BINDING: `${|'value' = prop}`
 
 BINDING: `${|'value' ! prop}`
 
-The same example above can be reused, the only difference is that the evaluation of the darkMode propertly will only be done on the
+The same example above can be reused, the only difference is that the evaluation of the darkMode property will only be done on the
 first rendering cycle. Please take note of the pipe character in the binding, as that is what designates it as a one-time binding.
 
 ## Attribute Bindings
@@ -227,7 +228,7 @@ Okay, there is a bit to unpack here. First lets focus on the binding, you can bi
 mouseenter, etc... as an event binding, and then you provide the 'handler' callback which exists IN the data model.
 
 Peasy passes 5 standard parameters into the handler for your convenience. The first parameter is the HTMLEvent that actually is fired.
-The second parameter is the 'localized' data model that is bound to the element. This CAN be trick, because depending on your nesting
+The second parameter is the 'localized' data model that is bound to the element. This CAN be tricky, because depending on your nesting
 of elements, it maybe be a localized data model for just that element, or if it is a top level binding, it will be the standard data
 model. We will get into nesting a bit later, but just know that another option is provided to help with this.
 
