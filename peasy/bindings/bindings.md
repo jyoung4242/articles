@@ -193,7 +193,7 @@ const model = {
 
 const template = `
 <div>
-    <input type="text" \${'value' <=> userName}>\${userName}</input>
+    <input type="text" \${value <=> userName}>\${userName}</input>
 </div>
 `;
 ```
