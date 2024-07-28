@@ -324,7 +324,7 @@ So with larger projects, there is a desire to organize a code base and utilize c
 Peasy-UI allows for component based design. We will 'lightly' touch on this topic in this article as the overall component feature will
 get its own article for properly exploring its capabilities.
 
-A component in peasy is any Javascript object which contains a template property.
+A component in peasy is any Javascript object which contains a static, public template property and a static create method.
 
 BINDING: `${ComponentName === state}`
 
