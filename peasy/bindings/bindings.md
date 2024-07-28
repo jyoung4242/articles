@@ -150,11 +150,12 @@ first rendering cycle. Please take note of the pipe character in the binding, as
 ## Attribute Bindings
 
 Attribute bindings use either `\${ }` or the pui attribute within an element tag to affect the behaviour of the element. For the sake
-of this article we will continue using the `\${ }` nomenclature.
+of this article we will continue using the `\${ }` nomenclature. We will explore the different methods of assigning bindings in a
+future article.
 
 ### Bindings for element attributes
 
-Peasy-UI gives us the power to access and control element attributes and allows us to monitor and control those values easily.
+Peasy-UI gives us the power to access element attributes and allows us to monitor and control those values easily.
 
 There are four basic element attribute bindings:
 
@@ -347,13 +348,24 @@ class MyComponent{
 
 const model = {
   MyComponent,
+  componentData:{
+    name: 'bob',
+    count: 10,
+  }
 };
 
 const template = `
 <div>
-    <\${MyComponent === {name: 'Bob', count: 3}}>
+    <\${MyComponent === componentData}>
 </div>
 ```
+
+So the MyComponent class must have a static create method that accepts incoming state, and a public static template. What peasy will do
+is set the local class properties as the internal state for each component, and will inject the class template into the overall project
+template.
+
+This can let you break a larger project down into smaller pieces. There is a lot more you can do with components, and it warrants its
+own article to explore futher.
 
 ## Getters
 
