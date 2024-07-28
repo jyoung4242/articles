@@ -185,6 +185,23 @@ const template = `
 In this example you are binding a custom attribute on each element 'red' and 'green' to the color property in the model. When the radio
 button in this group is selected, it changes the data in the model property 'color'.
 
+Another simple example:
+
+```ts
+const model = {
+  userName: "",
+};
+
+const template = `
+<div>
+    <label>Enter Username: </label>
+    <input type="text" \${value ==> userName}></input>
+</div>
+`;
+```
+
+This is a one way binding from the text field, that sets the data model value of userName to whatever is entered into the input field.
+
 Let's look at a bidirectional example:
 
 ```ts
