@@ -341,7 +341,7 @@ class MyComponent{
 
   constructor(public name: string,public count:number){}
 
-  create( state: {name:string, count:number}){
+  static create( state: {name:string, count:number}){
     return new MyComponent(state.name, state.count)
   }
 }
