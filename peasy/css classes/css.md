@@ -406,7 +406,13 @@ this example to move, therefore, all three elements get the `pui-moving` class a
 
 ## Conclusion
 
-todo
+Our focus in this entry in the Peasy-UI series is CSS. We took a look into internal and inline CSS binding, with code samples and an
+example. Next we discussed the three CSS helper classes that are available to use, pui-adding, pui-removing, and pui-moving. Our
+examples in this article are simplistic and straighforward, but one can see how they can be applied to provide the developer a
+sophisticated level of control of the DOM.
+
+In our next entry, we will dig into the most complicated concept of Peasy-UI, and break it down into smaller bites: using Peasy-UI to
+make re-usable components.
 
 ## More information
 
