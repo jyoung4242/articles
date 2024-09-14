@@ -5,18 +5,21 @@
   <summary>Table of Contents</summary>
   <ol>
     <li><a href="#introduction">Introduction</a></li>
-    <li><a href="#bindings-and-elements">Bindings for events</a></li>
-    <li><a href="#callback-params">Callback Params</a>
+    <li><a href="#binding-css-properties">Binding CSS Properties</a></li>
       <ul>
-        <li><a href="#event">Event</a></li>
-        <li><a href="#data-model">Data Model</a></li>
-        <li><a href="#target-element">Target Element</a></li>
-        <li><a href="#event-string">Event String</a></li>
-        <li><a href="#parent-data-object">Parent Data Object</a></li>
+        <li><a href="#internal-css">Internal CSS</a></li>
+        <li><a href="#inline-css">Inline CSS</a></li>
       </ul>
     </li>
-    <li><a href="#more-information">More information</a></li>
+    <li><a href="#the-three-helpers">The Three Helpers</a></li>
+      <ul>
+        <li><a href="#pui-adding">pui-adding</a></li>
+        <li><a href="#pui-removing">pui-removing</a></li>
+        <li><a href="#pui-moving">pui-moving</a></li>
+      </ul>
+    </li>
     <li><a href="#conclusion">Conclusion</a></li>
+    <li><a href="#more-information">More information</a></li>
   </ol>
 </details>
 
