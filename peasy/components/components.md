@@ -5,15 +5,28 @@
   <summary>Table of Contents</summary>
   <ol>
     <li><a href="#introduction">Introduction</a></li>
-    <li><a href="#bindings-and-elements">Bindings for events</a></li>
-    <li><a href="#callback-params">Callback Params</a>
+    <li><a href="#component-based-design">Component Based Design</a></li>
+    <li><a href="#registering-single-file-components-with-peasy">Registering Single File Components with Peasy</a>
       <ul>
-        <li><a href="#event">Event</a></li>
-        <li><a href="#data-model">Data Model</a></li>
-        <li><a href="#target-element">Target Element</a></li>
-        <li><a href="#event-string">Event String</a></li>
-        <li><a href="#parent-data-object">Parent Data Object</a></li>
+        <li><a href="#javascript-typescript-single-file-component">JavaScript (TypeScript) Single File Component</a></li>
+        <li><a href="#html-single-file-component">HTML Single File Component</a></li>
       </ul>
+    </li>
+    <li><a href="#demo-application">Demo Application</a>
+        <ul>
+            <li><a href="#label-component">Label Component</a></li>
+            <li><a href="#button-component">Button Component</a></li>
+        </ul>
+    </li>
+    <li><a href="#demo-component-implementation">Demo Component Implementation</a>
+        <ul>
+            <li><a href="#appui-class">AppUI Class</a>
+                <ul>
+                    <li><a href="#rendering-template">Rendering Template</a></li>
+                    <li><a href="#class-properties-as-state">Class properties as State</a></li>
+                </ul>
+            </li>
+        </ul>
     </li>
     <li><a href="#more-information">More information</a></li>
     <li><a href="#conclusion">Conclusion</a></li>
@@ -170,7 +183,7 @@ used in the same app. So the implementation details of the HTML component is:
 Going forward, we will dig into a small demonstration app, but it will be using Typescript for its components, and is using Vite as a
 build tool and bundler.
 
-## Demo application
+## Demo Application
 
 [Link to application github repo](https://github.com/jyoung4242/peasy-component-article)
 
@@ -220,6 +233,7 @@ export class Label {
   constructor(public count: number, public className: string) {}
 
   // static method that creates an instance of the class - required for Peasy-UI components
+  // but this is all under the hood, it becomes a UIView in your data model
   static create(state: LabelState) {
     return new Label(state.count, state.className);
   }
@@ -297,6 +311,7 @@ export class Button {
   ) {}
 
   // static method that creates an instance of the class - required for Peasy-UI components
+  // but this is all under the hood, it becomes a UIView in your data model
   static create(state: ButtonState) {
     return new Button(state.buttonText, state.className, state.buttonClickHandler);
   }
@@ -311,146 +326,90 @@ the classname to control different styles.
 
 ## Demo Component Implementation
 
-### Data Model
+### AppUI Class
 
 ```ts
 // ./src/ui.ts
 
-/*
-  Importing UI components here
-*/
-
-import { Button, ButtonState } from "./components/button";
 import { Label, LabelState } from "./components/label";
+import { Button, ButtonState } from "./components/button";
+import { UIView } from "@peasy-lib/peasy-ui";
 
-/*
-  Defining the data model which serves as Peasy-UI State
-*/
-export const model = {
-  Label, // adding the component Classes into the data model
-  Button,
-
-  labelInstance: undefined as Label | undefined, // this is the assigned 'instance' of the Label component
-
-  // This is the state 'props' that are passed into the Label component
-  counterState: { count: 0, className: "" } as LabelState,
-
-  // This is the state 'props' that are passed into the Button Components, one for each instance used
-  upButtonState: {
-    buttonText: "Up",
-    className: "up",
-    buttonClickHandler: () => {
-      increment();
-    },
-  } as ButtonState,
-  downButtonState: {
-    buttonText: "Down",
-    className: "down",
-    buttonClickHandler: () => {
-      decrement();
-    },
-  } as ButtonState,
-};
-
-...
-```
-
-So with any Peasy-UI project, we have a data model that represent the application state that Peasy uses. Let's go through this section
-by section.
-
-The first two things declared in the data model are the actual component classes. This provides Peasy-UI access to the class
-components, and when a template binding calls these out, it uses the create method on each class to instantiate each component.
-
-`labelInstance` is the actual instance of the Label class that is created, this gives us access to the two methods we will use to
-control the count on the label. We will see later in the template section how the binding to this works. Its important to note, that i
-call out `labelInstance` as either a Label | undefined, and this is because it IS undefined until the UIView.create().attached property
-in the main.ts call resolves its promise. This is a means to appease Typescript type checking, but it is important to note and
-understand that it is undefined until the View is attached. It is possible to not use the attached property, but there is a risk of
-attempting to render something from the data model that hasn't been evaluated yet, and this pattern prevents that from occuring.
-
-```ts
-// main.ts
-// Peasy-UI method for creating a View and attaching to DOM
-await UI.create(document.body, model, template).attached;
-```
-
-Once the view is attached to the DOM, then all undefined values in the data model will be evaluated to their intended states.
-
-`counterState`, `upButtonState`, and `downButtonState` are all objects that pass the default states into each component. Special note
-here is that as a part of the Button states, we are passing the event callback as state into the components, so we can re-use the
-components and control their behaviors.
-
-### String Literal Template
-
-```ts
-// .src/ui.ts
-
-/*
-  HTML template which is string literal representing what gets rendered by Peasy-UI
-*/
-
-export const template = `
+export class AppUI {
+  public static template = `
 <div>
-    <style>
-        .container {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 200px;
-            height: 100px;
-            padding: 10px;
-            border: 2px solid whitesmoke;
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .button_container {
-            gap: 5px;
-            display: flex;
-            flex-direction: row;
-        }
-    </style>
-
     <div class="container">
 
         <div class="label_container">
           <!-- Using the Peasy-UI Component here for a Label-->
-          <\${Label:labelInstance === counterState}>
+          <\${Label:labelView === counterState}>
         </div>
-       
+
         <div class="button_container">
           <!-- Creating two instances of the Peasy-UI Components here for buttons-->
           <\${Button === upButtonState}>
           <\${Button === downButtonState}>
         </div>
-    
+
     </div>
 </div>`;
+
+  // Class Properties as State below
+  // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+
+  // this is me fulfilling that 3rd requirement w/o the UI.register() method
+  public Button = Button;
+  public Label = Label;
+
+  // this is the assigned 'instance' of the Label component (as a UIView)
+  labelView: UIView | undefined = undefined;
+
+  // This is the state 'props' that are passed into the Label component
+  counterState: LabelState = { count: 0, className: "" };
+
+  // This is the state 'props' that are passed into each button component
+  upButtonState: ButtonState = {
+    buttonText: "Up",
+    className: "up",
+    buttonClickHandler: () => {
+      //reference to the internal method in the Label class
+      this.labelInstance!.model.increment();
+    },
+  };
+
+  downButtonState: ButtonState = {
+    buttonText: "Down",
+    className: "down",
+    buttonClickHandler: () => {
+      //reference to the internal method in the Label class
+      this.labelInstance!.model.decrement();
+    },
+  };
+}
 ```
 
-This is the parent string template that is provided into the UIView.Create() method for rendering. Here we can point out the bindings
-for the Peasy-UI components.
+So with any Peasy-UI project, we have a data model that represent the application state that Peasy uses. In this implementation, we are
+using the AppUI class to provide that data model. The properties of the class becomes the active 'State' for the data model.Let's go
+through this section by section.
 
-Some of this is general boilerplate, such as all the CSS styling tags that are used for the parent container, we won't focus on that.
-Also, that could be all used in an external .css file just fine and can be used to clean this stuff out, this is developer preference.
-The only time one needs to include CSS inside the template is if there is a Peasy-UI binding on the actual CSS. I talk a lot more about
-this in a previous article if you are interested in learning more about using Peasy with CSS:
-[Using Peasy with CSS](https://dev.to/jyoung4242/controlling-css-with-peasy-ui-part-4-of-the-peasy-ui-series-209a)
+#### Rendering Template
+
+`public static template ="...";`
+
+I like to define the template at the top of my class but that isn't necessary, its developer preference and just a habit of mine. This
+is the parent string template that is provided into the UIView.Create() method for rendering. This provides the HTML content that
+Peasy-UI will render inside the target element, in this example its `document.body`. Here we can point out the bindings for the
+Peasy-UI components.
 
 Let us look at the two different types of Component bindings here. Let's take the Label binding first.
 
-`<\${Label:labelInstance === counterState}>`
+`<\${Label:labelView === counterState}>`
 
-The three important ideas passed here are the class of Component: `Label`, the instance assignment `:labelInstance`, and the state
-object provided: `counterState`. All three of these are used with the `===` binding tag. This essentially states that we are creating
-an instance of the Label class, using the counterState object as a property to pass into the create method, and that the returning
-instance of the class should be saved by reference in the labelInstance value. Since we are using the instance value, we can then have
-access to all the internals of the class just like any other JS class can.
+The three important ideas passed here are the class of Component: `Label`, the UIView (instance) assignment `:labelView`, and the state
+object provided: `counterState`. All three of these are used with the `===` binding tag. This essentially states that we are creating a
+View of the Label class, using the counterState object as a property to pass into the create method, and that the returning View of the
+class should be saved by reference in the `labelView` value. Since we are using the instance (View) value, we can then have access to
+all the internals of the class just like any other JS class can.
 
 ```
 <\${Button === upButtonState}>
@@ -461,7 +420,70 @@ Now there are just two different aspects of the Button binding. First, we are us
 different state objects, this demonstrates the 're-usability' of the component. As a reminder, this even includes us passing the event
 callback into the component so its behavior is provided to it.
 
-Secondly, we are not in need of the instances of the component classes, so we are not binding the return value to anything.
+Secondly, we are not in need of the View of the component classes, so we are not binding the return value to anything.
+
+#### Class properties as State
+
+```ts
+  // this is me fulfilling that 3rd requirement w/o the UI.register() method
+  public Button = Button;
+  public Label = Label;
+```
+
+The first two things declared in the data model are the actual component classes. This provides Peasy-UI access to the class
+components, and when a template binding calls these out, it uses the create method on each class to instantiate each component. This
+fulfills that 3rd requirement for a Peasy-UI component.
+
+```ts
+// this is the assigned 'instance' of the Label component as a UIView
+  labelView: UIView | undefined = undefined;
+```
+
+`labelView` is the UIView returned when Peasy-UI uses the create method to create an instance of the Label class, then converts it to a
+UIView representing a Label class that is created, this gives us access to the two methods we will use to control the count on the
+label. We will see later in the template section how the binding to this works. Its important to note, that i call out `labelView` as
+either a `UIView | undefined`, and this is because it IS undefined until the UIView.create().attached property in the main.ts call
+resolves its promise. This is a means to appease Typescript type checking, but it is important to note and understand that it is
+undefined until the View is attached.
+
+```ts
+// main.ts
+// Peasy-UI method for creating a View and attaching to DOM
+await UI.create(document.body, new AppUI(), AppUI.template).attached;
+```
+
+It is possible to not use the attached property, but there is a risk of attempting to render something from the data model that hasn't
+been evaluated yet, and this pattern prevents that from occuring. Once the view is attached to the DOM, then all undefined values in
+the data model will be evaluated to their intended states.
+
+```ts
+// This is the state 'props' that are passed into the Label component
+counterState: LabelState = { count: 0, className: "" };
+
+// This is the state 'props' that are passed into each button component
+upButtonState: ButtonState = {
+  buttonText: "Up",
+  className: "up",
+  buttonClickHandler: () => {
+    //reference to the internal method in the Label class
+    this.labelView!.model.increment();
+  },
+};
+
+downButtonState: ButtonState = {
+  buttonText: "Down",
+  className: "down",
+  buttonClickHandler: () => {
+    //reference to the internal method in the Label class
+    this.labelView!.model.decrement();
+  },
+};
+```
+
+`counterState`, `upButtonState`, and `downButtonState` are all objects that pass the default states into each component. Special note
+here is that as a part of the Button states, we are passing the event callback as state into the components, so we can re-use the
+components and control their behaviors. Since they are JS objects, and passed as reference, you can modify these values directly and it
+will change the values inside the component classes.
 
 ## More information
 
@@ -478,11 +500,14 @@ Peasy Discord Server: [Here](https://discord.gg/9VsQrVH94Z)
 
 ## Conclusion
 
-In Summary, we looked at the different approaches that can be used to build Peasy-UI components, including single-file HTML components,
+In summary, we looked at the different approaches that can be used to build Peasy-UI components, including single-file HTML components,
 or JS/TS based compoenents. We looked at how you can use Peasy-UI components without a build step.
 
 We also reviewed a demo application that demonstrates some of the component features and implementation details. This includes using
 both the Class and Instances of a component, and using different state objects to re-use a component with different behaviors.
+
+We also walked through using a JS Class as the basis for creating the UIView for Peasy-UI that includes both the string template
+literal, and uses the class properties as the data model state.
 
 The big take aways from a component based architecture is modular design, cleaner code, and being able to reuse common components to
 improve maintainability of your code base!
